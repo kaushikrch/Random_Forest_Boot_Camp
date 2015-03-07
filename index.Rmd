@@ -1,6 +1,5 @@
 ---
 title       : Introduction to Random Forest
-subtitle    : Application to Pizza Hut Data Science Competition
 author      : Kaushik Roy Chowdhury
 framework   : io2012  
 highlighter : prettify  # {highlight.js, prettify, highlight}
@@ -139,7 +138,7 @@ Source: James, G.; Witten, D.; Hastie, T.; Tibshirani, R.: An Introduction to St
 
 ## Random Forest
 
-> * __BootStrap Aggregation__: Take bootstrapped samples from training data >> Randomly sample $m$ predictors >> fit decision trees >> Average out results of these tress.
+> * Take bootstrapped samples from training data >> Randomly sample $m$ predictors >> fit decision trees >> Average out results of these tress.
 
 > * Rationale: If there exists a strong predictor, along with moderately strong predictors, trees become correlated. Averaging out results does not lead to reduction in variance.
 
@@ -153,18 +152,3 @@ Average of predicted responses (for regression) or majority vote (for classifica
 > * Trade-off loss of interpratibility with high-performance.
 
 > * Has single-handedly won 4 Kaggle Competitions.
-
----
-
-## Pizza Hut Data Science Competition
-
-#### Objective
-- Predict probability of buying pizza, wings, others (visit). Profiling of wing buyers.
-- Segment customers based on propensity to buy to wings to recommend actionability (target marketing campaigns) at a zip code level.
-- Detemine right offers for a customer.
-
-#### Methodology
-- RFM Segmentation
-- Multinomial logistic regression
-- Random Forest
-- Collaborative filtering
