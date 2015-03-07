@@ -33,7 +33,7 @@
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
     <h1>Introduction to Random Forest</h1>
-    <h2>Application to Pizza Hut Data Science Competition</h2>
+    <h2></h2>
     <p>Kaushik Roy Chowdhury<br/></p>
   </hgroup>
   <article></article>  
@@ -213,7 +213,7 @@ Source: James, G.; Witten, D.; Hastie, T.; Tibshirani, R.: An Introduction to St
   </hgroup>
   <article data-timings="">
     <ul class = "build incremental">
-<li><p><strong>BootStrap Aggregation</strong>: Take bootstrapped samples from training data &gt;&gt; Randomly sample \(m\) predictors &gt;&gt; fit decision trees &gt;&gt; Average out results of these tress.</p></li>
+<li><p>Take bootstrapped samples from training data &gt;&gt; Randomly sample \(m\) predictors &gt;&gt; fit decision trees &gt;&gt; Average out results of these tress.</p></li>
 <li><p>Rationale: If there exists a strong predictor, along with moderately strong predictors, trees become correlated. Averaging out results does not lead to reduction in variance.</p></li>
 <li><p>The datasets left out of the \(b^{th}\) bootstrapped samples: &quot;Out-of-Bag observations&quot;</p></li>
 <li><p>Predictions for \(i^{th}\) observation for which it was OOB.
@@ -221,32 +221,6 @@ Average of predicted responses (for regression) or majority vote (for classifica
 <li><p>OOB Error also acts as a proxy for test set validation.</p></li>
 <li><p>Trade-off loss of interpratibility with high-performance.</p></li>
 <li><p>Has single-handedly won 4 Kaggle Competitions.</p></li>
-</ul>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-10" style="background:;">
-  <hgroup>
-    <h2>Pizza Hut Data Science Competition</h2>
-  </hgroup>
-  <article data-timings="">
-    <h4>Objective</h4>
-
-<ul>
-<li>Predict probability of buying pizza, wings, others (visit). Profiling of wing buyers.</li>
-<li>Segment customers based on propensity to buy to wings to recommend actionability (target marketing campaigns) at a zip code level.</li>
-<li>Detemine right offers for a customer.</li>
-</ul>
-
-<h4>Methodology</h4>
-
-<ul>
-<li>RFM Segmentation</li>
-<li>Multinomial logistic regression</li>
-<li>Random Forest</li>
-<li>Collaborative filtering</li>
 </ul>
 
   </article>
@@ -309,12 +283,6 @@ Average of predicted responses (for regression) or majority vote (for classifica
       <a href="#" target="_self" rel='tooltip' 
         data-slide=9 title='Random Forest'>
          9
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Pizza Hut Data Science Competition'>
-         10
       </a>
     </li>
   </ul>
