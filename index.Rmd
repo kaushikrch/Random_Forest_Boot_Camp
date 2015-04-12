@@ -1,14 +1,13 @@
 ---
 title       : Introduction to Random Forest
 author      : Kaushik Roy Chowdhury
-framework   : io2012  
-highlighter : prettify  # {highlight.js, prettify, highlight}
-hitheme     : zenburn      # 
-widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+framework   : io2012 
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     :  tomorrow           # 
+widgets     : [mathjax, bootstrap, shiny, interactive]            # {mathjax, quiz, bootstrap}
 mode        : standalone # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
-
 ## Outline
 
 > * Bootstrapping
@@ -102,17 +101,15 @@ text(tree.carseats, pretty =0)
 *** =right
 ```{r class_split_11, echo=FALSE, eval=TRUE}
 library(ISLR); library(ggplot2)
-dev.off()
 data(Carseats)
 CC <- Carseats
-CC$High <- ifelse(CC$Sales <=8," No"," Yes ")
-ggplot(data=CC,aes(factor(ShelveLoc),Price))+
+CC$High <- ifelse(CC$Sales <=8," No","Yes")
+ggplot(data=CC,aes(factor(ShelveLoc), Price))+
   geom_point(aes(color=(High)))+
   geom_hline(yintercept=92.5)
 ```
 
 ---
-
 ## Trees versus Linear Models
 ![fig.align = "center"](comparison.png)
 <div class="footer" style="margin-left:400px;margin-top:10px;font-size:80%;">
@@ -151,4 +148,21 @@ Average of predicted responses (for regression) or majority vote (for classifica
 
 > * Trade-off loss of interpratibility with high-performance.
 
-> * Has single-handedly won 4 Kaggle Competitions.
+--- #examples
+
+```{r rf1, echo=TRUE, eval=TRUE, warning=FALSE, tidy=FALSE, results='markup', message=FALSE, strip.white=TRUE, collapse=TRUE, size = "tiny", comment=""}
+library(MASS); data(fgl); summary(fgl)
+```
+
+---
+
+```{r rf2, echo=TRUE, eval=TRUE, warning=FALSE, tidy=FALSE, results='markup', message=FALSE, strip.white=TRUE, collapse=FALSE, size = "tiny", comment=""}
+library(randomForest)
+mod <- randomForest(type~., data=fgl, mtry=3, importance=TRUE)
+print(mod)
+```
+
+---
+```{r rf3, echo=TRUE, eval=TRUE, warning=FALSE, tidy=FALSE, results='markup', message=FALSE, strip.white=TRUE, collapse=FALSE, size = "tiny", comment="", fig.align='center'}
+varImpPlot(mod)
+```

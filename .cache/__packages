@@ -5,3 +5,6 @@ MASS
 slidify
 slidifyLibraries
 tree
+devtools
+randomForest
+highlight

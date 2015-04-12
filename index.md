@@ -1,14 +1,13 @@
 ---
 title       : Introduction to Random Forest
 author      : Kaushik Roy Chowdhury
-framework   : io2012  
-highlighter : prettify  # {highlight.js, prettify, highlight}
-hitheme     : zenburn      # 
-widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+framework   : io2012 
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     :  tomorrow           # 
+widgets     : [mathjax, bootstrap, shiny, interactive]            # {mathjax, quiz, bootstrap}
 mode        : standalone # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
-
 ## Outline
 
 > * Bootstrapping
@@ -75,17 +74,9 @@ strong {
 *** =left
 ![plot of chunk class_tree_plot_115](assets/fig/class_tree_plot_115.png) 
 *** =right
-![plot of chunk class_split_11](assets/fig/class_split_111.png) 
-
-```
-## RStudioGD 
-##         2
-```
-
-![plot of chunk class_split_11](assets/fig/class_split_112.png) 
+![plot of chunk class_split_11](assets/fig/class_split_11-1.png) 
 
 ---
-
 ## Trees versus Linear Models
 ![fig.align = "center"](comparison.png)
 <div class="footer" style="margin-left:400px;margin-top:10px;font-size:80%;">
@@ -124,4 +115,66 @@ Average of predicted responses (for regression) or majority vote (for classifica
 
 > * Trade-off loss of interpratibility with high-performance.
 
-> * Has single-handedly won 4 Kaggle Competitions.
+--- #examples
+
+
+```r
+library(MASS); data(fgl); summary(fgl)
+       RI                Na              Mg              Al       
+ Min.   :-6.8500   Min.   :10.73   Min.   :0.000   Min.   :0.290  
+ 1st Qu.:-1.4775   1st Qu.:12.91   1st Qu.:2.115   1st Qu.:1.190  
+ Median :-0.3200   Median :13.30   Median :3.480   Median :1.360  
+ Mean   : 0.3654   Mean   :13.41   Mean   :2.685   Mean   :1.445  
+ 3rd Qu.: 1.1575   3rd Qu.:13.82   3rd Qu.:3.600   3rd Qu.:1.630  
+ Max.   :15.9300   Max.   :17.38   Max.   :4.490   Max.   :3.500  
+       Si              K                Ca               Ba       
+ Min.   :69.81   Min.   :0.0000   Min.   : 5.430   Min.   :0.000  
+ 1st Qu.:72.28   1st Qu.:0.1225   1st Qu.: 8.240   1st Qu.:0.000  
+ Median :72.79   Median :0.5550   Median : 8.600   Median :0.000  
+ Mean   :72.65   Mean   :0.4971   Mean   : 8.957   Mean   :0.175  
+ 3rd Qu.:73.09   3rd Qu.:0.6100   3rd Qu.: 9.172   3rd Qu.:0.000  
+ Max.   :75.41   Max.   :6.2100   Max.   :16.190   Max.   :3.150  
+       Fe             type   
+ Min.   :0.00000   WinF :70  
+ 1st Qu.:0.00000   WinNF:76  
+ Median :0.00000   Veh  :17  
+ Mean   :0.05701   Con  :13  
+ 3rd Qu.:0.10000   Tabl : 9  
+ Max.   :0.51000   Head :29  
+```
+
+---
+
+
+```r
+library(randomForest)
+mod <- randomForest(type~., data=fgl, mtry=3, importance=TRUE)
+print(mod)
+```
+
+```
+
+Call:
+ randomForest(formula = type ~ ., data = fgl, mtry = 3, importance = TRUE) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 3
+
+        OOB estimate of  error rate: 19.63%
+Confusion matrix:
+      WinF WinNF Veh Con Tabl Head class.error
+WinF    62     6   2   0    0    0   0.1142857
+WinNF   10    62   1   1    1    1   0.1842105
+Veh      7     3   7   0    0    0   0.5882353
+Con      0     3   0   9    0    1   0.3076923
+Tabl     0     2   0   0    7    0   0.2222222
+Head     1     3   0   0    0   25   0.1379310
+```
+
+---
+
+```r
+varImpPlot(mod)
+```
+
+<img src="assets/fig/rf3-1.png" title="plot of chunk rf3" alt="plot of chunk rf3" style="display: block; margin: auto;" />
